@@ -13,13 +13,13 @@ axios.defaults.headers[ALLOW_HEADERS] = '*'
 axios.defaults.headers[ALLOW_METHODS] = 'GET, POST'
 
 const CONTENT_TYPE = 'Content-Type'
-const X_AUTH_TOKEN = 'x-auth-token'
 
 // axios 配置
 axios.defaults.timeout = 5000 // 请求超时
-axios.defaults.baseURL = 'http://scauymt.com/sell'
+axios.defaults.baseURL = 'http://127.0.0.1:8080'
 
-axios.defaults.headers.post[CONTENT_TYPE] = 'application/json;charset=UTF-8'
+axios.defaults.headers.post[CONTENT_TYPE] = 'application/x-www-form-urlencoded;charset=UTF-8'
+// axios.defaults.headers.post[CONTENT_TYPE] = 'application/json;charset=UTF-8'
 axios.defaults.withCreadentials = true
 
 // 创建 axios
@@ -75,15 +75,15 @@ service.interceptors.response.use(response => response,
     return Promise.reject(error)
   })
 
-// // POST 传参序列化 (拦截器)
-// service.interceptors.request.use(config => {
-//   if (config.method === 'post') {
-//     config.data = qs.stringify(config.data)
-//   }
-//   return config
-// }, error => {
-//   console.log("传参发生错误");
-//   return Promise.reject(error)
-// })
+// POST 传参序列化 (拦截器)
+service.interceptors.request.use(config => {
+  if (config.method === 'post') {
+    config.data = qs.stringify(config.data)
+  }
+  return config
+}, error => {
+  console.log("传参发生错误");
+  return Promise.reject(error)
+})
 
 export default service
