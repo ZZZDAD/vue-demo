@@ -9,11 +9,14 @@
 
 <script>
 export default {
-  name: 'App'
-}
+  name: "App"
+};
 </script>
 
 <style>
+* {
+  margin: 0;
+}
 #app {
   font-size: 16px;
 }
