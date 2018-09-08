@@ -40,6 +40,7 @@ module.exports = {
       '@': resolve('src'),
     }
   },
+  devtool : '#source-map',  // Chrome Vue面板
   module: {
     rules: [{
         test: /\.vue$/,
